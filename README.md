@@ -15,10 +15,11 @@ This repository presents a novel approach to the discretisation and solution of 
 ## Getting Started
 To get started with the code, clone this repository and follow the instructions in the `examples` directory to run various test cases.
 
-```sh
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
-
-
-## Example of Carlisle 2005 Flood Event Modeled with NN4PDEs
+### Carlisle 2005 Flood Event Modeled with NN4PDEs
 <img src="https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-/blob/main/SWE_2.gif" width="512" />
+Usage
+Detailed instructions on how to use the code and run simulations can be found in the docs directory.
+
+```sh
+git clone https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-.git
+cd YOUR_REPOSITORY
