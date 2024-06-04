@@ -14,9 +14,9 @@ This repository presents a novel approach to the discretisation and solution of 
 
 ## Getting Started
 To get started with the code, clone this repository using the code at the bottom of this page or click on each file to download them separately or click on the links below:
-- **Carlisle Bathymetry**: https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle-5m.dem.raw
-- **Inlet Points**: https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle.bci
-- **Flowrates**: https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/flowrates.csv
+- [Carlisle Bathymetry](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle-5m.dem.raw)
+- [Inlet Points](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle.bci)
+- [Flowrates](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/flowrates.csv)
 
 ### Carlisle 2005 Flood Event Modeled with NN4PDEs
 <img src="https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-/blob/main/SWE_2.gif" width="512" />
