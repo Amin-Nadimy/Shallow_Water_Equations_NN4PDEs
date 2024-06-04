@@ -21,5 +21,5 @@ Usage
 Detailed instructions on how to use the code and run simulations can be found in the docs directory.
 
 ```sh
-git clone https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-.git
-cd YOUR_REPOSITORY
+git clone https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs.git
+cd Shallow_Water_Equations_NN4PDEs
