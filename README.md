@@ -59,4 +59,8 @@ git clone https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs.git
 cd Shallow_Water_Equations_NN4PDEs
 ```
 
+## Contact and references
+For more information please contact me via:
+- Email: amin.nadimy19@imperial.ac.uk
+
 
