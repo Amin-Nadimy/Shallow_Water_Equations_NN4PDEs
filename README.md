@@ -45,7 +45,14 @@ To get started with the code, clone this repository using the code at the bottom
   ]
 }
 ```
-<img src="https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-/blob/main/SWE_2.gif" width="512" />
+
+<!-- <img src="https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-/blob/main/SWE_2.gif" width="512" /> -->
+
+
+https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/assets/71018515/f44fed0b-9b45-499a-8383-9e65b6193202
+
+
+
 Usage
 Detailed instructions on how to use the code and run simulations can be found in the docs directory.
 
