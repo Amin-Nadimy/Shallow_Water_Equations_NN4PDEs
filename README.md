@@ -51,7 +51,31 @@ To get started with the code, clone this repository using the code at the bottom
 
 https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/assets/71018515/f44fed0b-9b45-499a-8383-9e65b6193202
 
+## Installation
 
+### Prerequisites
+
+Before proceeding, ensure that you have the following:
+
+- **Python 3.10**: It is recommended to use Python 3.10 for compatibility with the required packages and libraries.
+
+- **Conda (Preferred)**: Although not essential, it is recommended to use [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) for managing your Python environment and dependencies. Conda simplifies package management and helps avoid conflicts.
+
+- **GPU with CUDA support**: A GPU that supports CUDA and has at least 20GB of VRAM. Ensure that your CUDA drivers are correctly installed and configured.
+
+### Environment Setup
+
+To set up the environment, run:
+
+```bash
+conda env create -f environment.yml
+```
+
+Alternatively, you can install the required packages using `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
 
 Usage
 Detailed instructions on how to use the code and run simulations can be found in the docs directory.
