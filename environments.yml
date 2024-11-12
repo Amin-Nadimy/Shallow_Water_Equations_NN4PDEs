@@ -1,0 +1,16 @@
+name: ABL
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.10
+  - pip
+  - flake8
+  - ipython
+  - numpy
+  - pip:
+    - jupyter
+    - torch
+    - -r requirements.txt
+    - -e .
