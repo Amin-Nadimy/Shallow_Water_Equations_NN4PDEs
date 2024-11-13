@@ -64,7 +64,7 @@ To get started with the code, clone this repository using the code at the bottom
 │           └── SWE_2D_diff_Linear.py      # External library
 │   ├── Parallel/                     
 │           └── SWE_parallel.py            # Main code
-│   ├── Quadratic/                     
+│   └── Quadratic/                     
 │           ├── AI4SWE_quadratic.py        # Main code
 │           └── SWE_2D_diff_Q.py           # External library
 ```
