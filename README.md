@@ -49,6 +49,7 @@ To get started with the code, clone this repository using the code at the bottom
 <!-- <img src="https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-/blob/main/SWE_2.gif" width="512" /> -->
 
 ---
+```plaintext
 ## Repository Structure
 . hallow_Water_Equations_NN4PDEs
 ├── Demos/                                 # Folder for animation files
@@ -66,6 +67,7 @@ To get started with the code, clone this repository using the code at the bottom
 │   ├── Quadratic/                     
 │           ├── AI4SWE_quadratic.py        # Main code
 │           └── SWE_2D_diff_Q.py           # external library
+```
 ---
 
 https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/assets/71018515/f44fed0b-9b45-499a-8383-9e65b6193202
