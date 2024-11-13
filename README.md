@@ -17,7 +17,7 @@ To get started with the code, clone this repository using the code at the bottom
 - [Carlisle Bathymetry](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle-5m.dem.raw)
 - [Inlet Points](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle.bci)
 - [Flowrates](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/flowrates.csv)
-
+---
 ### Carlisle 2005 Flood Event Modeled with NN4PDEs
 ```geojson
 {
@@ -49,8 +49,8 @@ To get started with the code, clone this repository using the code at the bottom
 <!-- <img src="https://github.com/Amin-Nadimy/Shallow_Water_Equations_-SWE-/blob/main/SWE_2.gif" width="512" /> -->
 
 ---
-```plaintext
 ## Repository Structure
+```plaintext
 . hallow_Water_Equations_NN4PDEs
 ├── Demos/                                 # Folder for animation files
 │   ├── 68-hours_simulation.mp4            # mp4 format of the 68 h simulation results
