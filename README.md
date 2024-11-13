@@ -56,17 +56,17 @@ To get started with the code, clone this repository using the code at the bottom
 │   ├── 68-hours_simulation.mp4            # mp4 format of the 68 h simulation results
 │   └── SWE_2_gif.gif                      # gif format of the 68 h simulation results
 ├── Documents/                             # Model inputs
-│   ├── Carlisle.bci                       # a raster file of the domain
+│   ├── Carlisle.bci                       # A raster file of the domain
 │   └── point_readings_paper.csv           # Coordinates of the reading points in the domain
 ├── Source_code/                           # Python codes for Linea, Quadratic and parallel simulations
 │   ├── Linear/                     
 │           ├── AI4SWE_Linear.py           # Main code
-│           └── SWE_2D_diff_Linear.py      # external library
+│           └── SWE_2D_diff_Linear.py      # External library
 │   ├── Parallel/                     
 │           └── SWE_parallel.py            # Main code
 │   ├── Quadratic/                     
 │           ├── AI4SWE_quadratic.py        # Main code
-│           └── SWE_2D_diff_Q.py           # external library
+│           └── SWE_2D_diff_Q.py           # External library
 ```
 ---
 
