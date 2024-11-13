@@ -51,7 +51,7 @@ To get started with the code, clone this repository using the code at the bottom
 ---
 ## Repository Structure
 ```plaintext
-. hallow_Water_Equations_NN4PDEs
+. Shallow_Water_Equations_NN4PDEs
 ├── Demos/                                 # Folder for animation files
 │   ├── 68-hours_simulation.mp4            # mp4 format of the 68 h simulation results
 │   └── SWE_2_gif.gif                      # gif format of the 68 h simulation results
