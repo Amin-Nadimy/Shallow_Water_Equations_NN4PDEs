@@ -17,6 +17,13 @@ To get started with the code, clone this repository using the code at the bottom
 - [Carlisle Bathymetry](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle-5m.dem.raw)
 - [Inlet Points](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/carlisle.bci)
 - [Flowrates](https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs/blob/main/flowrates.csv)
+
+```ruby
+git clone https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs.git
+```
+```ruby
+cd Shallow_Water_Equations_NN4PDEs
+```
 ---
 ### Carlisle 2005 Flood Event Modeled with NN4PDEs
 ```geojson
@@ -104,12 +111,7 @@ Detailed instructions on how to use the code and run simulations can be found in
 ## License
 This project is licensed under the MIT License. See the LICENSE.md file for details.
 
-```ruby
-git clone https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs.git
-```
-```ruby
-cd Shallow_Water_Equations_NN4PDEs
-```
+
 
 ## Contact and references
 For more information please contact me via:
