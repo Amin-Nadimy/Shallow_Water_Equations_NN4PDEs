@@ -18,7 +18,6 @@
 
 #-- Import general libraries
 import os
-# os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices' ## enable xla devices # Comment out this line if runing on GPU cluster
 import numpy as np 
 import pandas as pd
 import time 
@@ -27,9 +26,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import csv
-# Import local functions
-# import AI4SWE_activation_function_torch as f 
-# import AI4SWE_filters_torch as CNN2D
 
 # Check if GPU is available 
 is_gpu = torch.cuda.is_available()
@@ -156,9 +152,6 @@ k_x = torch.zeros(input_shape, device=device)
 k_y = torch.zeros(input_shape, device=device)
 b = torch.zeros(input_shape, device=device)
 
-# values_u_new = torch.zeros(input_shape, device=device)
-# values_v_new = torch.zeros(input_shape, device=device)
-# values_h_new = torch.zeros(input_shape, device=device)
 # Padding
 input_shape_pd = (1, 1, ny + 4, nx + 4)
 values_uu = torch.zeros(input_shape_pd, device=device)
@@ -438,12 +431,9 @@ class AI4SWE(nn.Module):
         b_uu = self.boundary_condition_u(b_u,b_uu)       
         b_vv = self.boundary_condition_v(b_v,b_vv)
 
-        # sigma_q = (b_u**2 + b_v**2)**0.5 * 0.055**2 / (torch.maximum(k1,(values_H+values_h))**(4/3))
         sigma_q = (b_u**2 + b_v**2)**0.5 * 0.055**2 / (torch.maximum( k1,
             dx*self.cmm_L(self.boundary_condition_eta_L(values_H+values_h,values_hhp_L))*0.01+(values_H+values_h)*0.99 )**(4/3)) 
 
-        # b_u = torch.div(b_u, 1 + torch.div(torch.mul(sigma_q, dt),rho))
-        # b_v = torch.div(b_v, 1 + torch.div(torch.mul(sigma_q, dt),rho))
         b_u = b_u / (1 + sigma_q * dt / rho)
         b_v = b_v / (1 + sigma_q * dt / rho)
 
@@ -452,17 +442,11 @@ class AI4SWE(nn.Module):
         values_v = values_v + k_y * dt - b_u * self.xadv(b_vv) * dt - b_v * self.yadv(b_vv) * dt 
         values_u = values_u - self.xadv_L(self.boundary_condition_eta_L(values_h,values_hhp_L)) * dt
         values_v = values_v - self.yadv_L(self.boundary_condition_eta_L(values_h,values_hhp_L)) * dt     
-
-        # sigma_q = (values_u**2 + values_v**2)**0.5 * 0.055**2 / (torch.maximum(k1,(values_H+values_h))**(4/3))
         sigma_q = (values_u**2 + values_v**2)**0.5 * 0.055**2 / (torch.maximum( k1,
             dx*self.cmm_L(self.boundary_condition_eta_L(values_H+values_h,values_hhp_L))*0.01+(values_H+values_h)*0.99 )**(4/3))
 
         values_u = values_u / (1 + sigma_q * dt / rho)
         values_v = values_v / (1 + sigma_q * dt / rho)
-        # values_u = torch.div(values_u, 1 + torch.div(torch.mul(sigma_q, dt),rho))
-        # values_v = torch.div(values_v, 1 + torch.div(torch.mul(sigma_q, dt),rho))
-        # values_uu = self.boundary_condition_u_L(values_u,values_uu)
-        # values_vv = self.boundary_condition_v_L(values_v,values_vv)
         eta1 = torch.maximum(k2,(values_H+values_h))
         eta2 = torch.maximum(k1,(values_H+values_h))
         # dbug = 
