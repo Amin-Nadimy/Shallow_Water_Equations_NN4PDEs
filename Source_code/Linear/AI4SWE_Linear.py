@@ -17,7 +17,6 @@
 '''
 #-- Import general libraries
 import os
-# os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices' ## enable xla devices # Comment out this line if runing on GPU cluster
 import numpy as np 
 import pandas as pd
 import time 
@@ -26,9 +25,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import csv
-# Import local functions
-# import AI4SWE_activation_function_torch as f 
-# import AI4SWE_filters_torch as CNN2D
 
 # Check if GPU is available 
 is_gpu = torch.cuda.is_available()
@@ -273,12 +269,9 @@ class AI4SWE(nn.Module):
 
         k_v = 0.25 * dx * torch.abs(1/2 * (dx**-2) * (torch.abs(values_u) * dx + torch.abs(values_v) * dx) * self.diff(values_vv)) / \
             (1e-03  + (torch.abs(self.xadv(values_vv)) * (dx**-2) + torch.abs(self.yadv(values_vv)) * (dx**-2)) / 2)
-# current one that might need test with 0.5 factor (will do later on)
+
         k_uu = F.pad(torch.minimum(k_u, k3) , (1, 1, 1, 1), mode='constant', value=0)
         k_vv = F.pad(torch.minimum(k_v, k3) , (1, 1, 1, 1), mode='constant', value=0)
-# new one combining transient and steady problem     
-        # k_uu = F.pad(torch.minimum(k_u, torch.maximum(k3, torch.ones(input_shape, device=device)*dx*(values_u**2+values_v**2)**0.5)) , (1, 1, 1, 1), mode='constant', value=0)
-        # k_vv = F.pad(torch.minimum(k_v, torch.maximum(k3, torch.ones(input_shape, device=device)*dx*(values_u**2+values_v**2)**0.5)) , (1, 1, 1, 1), mode='constant', value=0)
 
         k_x = 0.5 * (k_u * self.diff(values_uu) + self.diff(values_uu * k_uu) - values_u * self.diff(k_uu))
         k_y = 0.5 * (k_v * self.diff(values_vv) + self.diff(values_vv * k_vv) - values_v * self.diff(k_vv))
@@ -287,10 +280,8 @@ class AI4SWE(nn.Module):
     def PG_scalar(self, values_hh, values_h, values_u, values_v, k3):
         k_u = 0.25 * dx * torch.abs(1/2 * (dx**-2) * (torch.abs(values_u) * dx + torch.abs(values_v) * dx) * self.diff(values_hh)) / \
             (1e-03 + (torch.abs(self.xadv(values_hh)) * (dx**-2) + torch.abs(self.yadv(values_hh)) * (dx**-2)) / 2)  
-# current one that might need test with 0.5 factor (will do later on)        
+      
         k_uu = F.pad(torch.minimum(k_u, k3) , (1, 1, 1, 1), mode='constant', value=0)
-# new one combining transient and steady problem     
-        # k_uu = F.pad(torch.minimum(k_u, torch.maximum(k3, torch.ones(input_shape, device=device)*dx*(values_u**2+values_v**2)**0.5)) , (1, 1, 1, 1), mode='constant', value=0)
         return 0.5 * (k_u * self.diff(values_hh) + self.diff(values_hh * k_uu) - values_h * self.diff(k_uu))        
 
     def forward(self, values_u, values_uu, values_v, values_vv, values_H, values_h, values_hp, b_u, b_uu, b_v, b_vv, dt, rho, k1, k2, k3, eta1_p, source_h, dif_values_h, dif_values_hh, values_hh, values_hhp):
@@ -306,11 +297,6 @@ class AI4SWE(nn.Module):
         b_uu = self.boundary_condition_u(b_u,b_uu)       
         b_vv = self.boundary_condition_v(b_v,b_vv)
 
-        # sigma_q = (b_u**2 + b_v**2)**0.5 * 0.055**2 / (torch.maximum(k1,(values_H+values_h))**(4/3))
-
-        # sigma_q = (b_u**2 + b_v**2)**0.5 * 0.055**2 / (torch.maximum(k1,torch.maximum(values_H+values_h,
-        #     dx*self.cmm(self.boundary_condition_eta(values_H+values_h,values_hp))))**(4/3)) 
-
         sigma_q = (b_u**2 + b_v**2)**0.5 * 0.055**2 / (torch.maximum( k1,
             dx*self.cmm(self.boundary_condition_eta(values_H+values_h,values_hp))*0.01+(values_H+values_h)*0.99 )**(4/3)) 
 
@@ -323,11 +309,6 @@ class AI4SWE(nn.Module):
         values_u = values_u - self.xadv(self.boundary_condition_eta(values_h,values_hp)) * dt
         values_v = values_v - self.yadv(self.boundary_condition_eta(values_h,values_hp)) * dt     
 
-        # sigma_q = (values_u**2 + values_v**2)**0.5 * 0.055**2 / (torch.maximum(k1,(values_H+values_h))**(4/3))
-
-        # sigma_q = (values_u**2 + values_v**2)**0.5 * 0.055**2 / (torch.maximum(k1,torch.maximum(values_H+values_h,
-        #     dx*self.cmm(self.boundary_condition_eta(values_H+values_h,values_hp))))**(4/3))
-
         sigma_q = (values_u**2 + values_v**2)**0.5 * 0.055**2 / (torch.maximum( k1,
             dx*self.cmm(self.boundary_condition_eta(values_H+values_h,values_hp))*0.01+(values_H+values_h)*0.99 )**(4/3))
 
@@ -338,7 +319,7 @@ class AI4SWE(nn.Module):
         values_vv = self.boundary_condition_v(values_v,values_vv)
         eta1 = torch.maximum(k2,(values_H+values_h))
         eta2 = torch.maximum(k1,(values_H+values_h))
-        # dbug = eta2 -> eta1
+
         b = beta * rho * (-self.xadv(self.boundary_condition_eta(eta1,eta1_p)) * values_u - \
                            self.yadv(self.boundary_condition_eta(eta1,eta1_p)) * values_v - \
                            eta1 * self.xadv(values_uu) - eta1 * self.yadv(values_vv) + \
@@ -382,7 +363,6 @@ with torch.no_grad():
             print('Not converged !!!!!!')
             break
         print('Time step:', itime, 'height correction:', np.max(values_hh.cpu().detach().numpy())) 
-        # print('height correction:', np.max(values_hh.cpu().detach().numpy()))
 
         if save_fig == True and itime % n_out == 0:
             np.save("H"+str(itime), arr=values_H.cpu().detach().numpy()[0,0,:,:])
@@ -415,24 +395,6 @@ with torch.no_grad():
                                      'Water_mark_2_u':'{:.1f}'.format(values_u[0,0,611-y15,x15].item()),
                                      'tot_vol':'{:.1f}'.format(25*torch.sum((values_h+values_H)[0,0,:,:]).item())})
 
-
-        # print('========================================================')
-        # if np.max(np.abs(values_hh.cpu().detach().numpy())) > 10.0:
-        #     print('Not converged !!!!!!')
-        #     np.save("temp/H"+str(itime), arr=values_H.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/h"+str(itime), arr=values_h.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/u"+str(itime), arr=values_v.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/v"+str(itime), arr=values_u.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/sigma"+str(itime), arr=sigma_q.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/dh"+str(itime), arr=dif_values_h.cpu().detach().numpy()[0,0,:,:])
-        #     break
-        # if save_fig == True and itime % n_out == 0:
-        #     np.save("temp/H"+str(itime), arr=values_H.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/h"+str(itime), arr=values_h.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/u"+str(itime), arr=values_v.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/v"+str(itime), arr=values_u.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/b"+str(itime), arr=b.cpu().detach().numpy()[0,0,:,:])
-        #     np.save("temp/dh"+str(itime), arr=dif_values_h.cpu().detach().numpy()[0,0,:,:])
 
     end = time.time()
     print('time',(end-start))
