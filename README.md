@@ -74,8 +74,6 @@ git clone https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs.git
 │   ├── Linear/                     
 │           ├── AI4SWE_Linear.py           # Main code
 │           └── SWE_2D_diff_Linear.py      # External library
-│   ├── Parallel/                     
-│           └── SWE_parallel.py            # Main code
 │   └── Quadratic/                     
 │           ├── AI4SWE_quadratic.py        # Main code
 │           └── SWE_2D_diff_Q.py           # External library
