@@ -114,8 +114,33 @@ Detailed instructions on how to use the code and run simulations can be found in
 ## License
 This project is licensed under the MIT License. See the LICENSE.md file for details.
 
+## Citation
+If you use this project or the related paper in your research, please cite it as follows:
 
+### Paper Citation:
 
+```bibtex
+@article{chen2025solving,
+  title={Solving the discretised shallow water equations using neural networks},
+  author={Chen, Boyang and Nadimy, Amin and Heaney, Claire E and Sharifian, Mohammad Kazem and Estrem, Lluis Via and Nicotina, Ludovico and Hilberts, Arno and Pain, Christopher C},
+  journal={Advances in Water Resources},
+  pages={104903},
+  year={2025},
+  publisher={Elsevier}
+}
+```
+
+### GitHub Repository Citation:
+To cite this GitHub repository, please use the following `bibtex` entry:
+
+```bibtex
+@misc{nadimy2025shallow,
+  author = {Amin Nadimy},
+  title = {Shallow Water Equations and Neural Networks for Solving PDEs},
+  year = {2025},
+  url = {https://github.com/Amin-Nadimy/Shallow_Water_Equations_NN4PDEs}
+}
+```
 ## Contact and references
 For more information please contact me via:
 - Email: amin.nadimy19@imperial.ac.uk
