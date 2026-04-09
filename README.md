@@ -2,6 +2,14 @@
 
 This repository presents a novel approach to the discretisation and solution of the Shallow Water Equations using finite difference (FD), finite volume (FV), and finite element methods (FE). Our method reformulates the discretised system of equations as a discrete convolution, analogous to a convolutional layer in a neural network, and solves it using Jacobi iteration.
 
+## Abstract
+on the finite element (FE) method. The discretisation is expressed as the convolutional layer of a neural network whose weights are determined by integrals of the FE basis functions. The resulting system can be
+solved with explicit or implicit methods. Expressing and solving discretised systems with neural networks has several benefits, including platform-agnostic code that can run on CPUs, GPUs as well as the latest processors
+optimised for AI workloads; the model is fully differentiable and suitable for performing optimisation tasks such as data assimilation; easy integration with trained neural networks that could represent sub-grid-scale
+models, surrogate models or physics-informed approaches; and speeding up the development of models due to the available functionality in machine-learning libraries. In this paper, we investigate explicit and semi-implicit
+methods, and FE discretisations of up to quartic-order elements. A variety of examples is used to demonstrate the neural-network–based SWE solver, ranging from idealised problems with analytical solutions to laboratory
+experiments, and we finish with a real-world test case based on the 2005 Carlisle flood.
+
 ## Key Features:
 - **Platform-Agnostic Code**: Runs seamlessly on CPUs, GPUs, and AI-optimized processors.
 - **Neural Network Integration**: Easily integrates with trained neural networks for sub-grid-scale models, surrogate models, or physics-informed approaches.
